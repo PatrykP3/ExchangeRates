@@ -1,0 +1,12 @@
+logging:
+  pattern:
+    console:
+
+spring:
+  main:
+    banner-mode: "off"
+
+nbpapi:
+  protocol: http
+  host: api.nbp.pl
+  path: /api/exchangerates/rates/c/{p1}/{p2}/{p3}
