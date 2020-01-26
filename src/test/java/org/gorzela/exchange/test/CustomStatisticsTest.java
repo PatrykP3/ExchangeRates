@@ -96,5 +96,33 @@ public class CustomStatisticsTest {
         DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics(asks);
         assertEquals(descriptiveStatistics.getStandardDeviation(), customStatistics.getStandardDeviation(), 0.0000001);
     }
+
+    // simple, redundant test used for development
+    @Test
+    public void VarianceTest() {
+        
+        double[] asks = {1, 2, 1};
+        CustomStatistics customStatistics = new CustomStatistics(asks);
+        DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics(asks);
+        double x = descriptiveStatistics.getVariance();
+        double v = customStatistics.getVariance();
+        assertEquals(descriptiveStatistics.getMin(), customStatistics.getMin(), 0);
+    }
+    
+    @Test
+    public void MinValueTest() {
+        double[] asks = {3, 5, 6};
+        CustomStatistics customStatistics = new CustomStatistics(asks);
+        DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics(asks);
+        assertEquals(descriptiveStatistics.getMin(), customStatistics.getMin(), 0);
+    }
+
+    @Test
+    public void MaxValueTest() {
+        double[] asks = {3, 5, 6};
+        CustomStatistics customStatistics = new CustomStatistics(asks);
+        DescriptiveStatistics descriptiveStatistics = new DescriptiveStatistics(asks);
+        assertEquals(descriptiveStatistics.getMax(), customStatistics.getMax(), 0);
+    }
 }
 

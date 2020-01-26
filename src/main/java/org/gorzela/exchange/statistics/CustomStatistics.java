@@ -6,6 +6,10 @@ import org.apache.commons.math3.stat.descriptive.StatisticalSummary;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
+import java.util.Arrays;
+
+import com.sun.istack.internal.NotNull;
+
 @AllArgsConstructor
 public class CustomStatistics implements StatisticalSummary {
 
@@ -19,12 +23,9 @@ public class CustomStatistics implements StatisticalSummary {
     @Override
     public double getVariance() {
 
-        double numerator = 0;
         double mean = getMean();
+        double numerator = Arrays.stream(values).map(((price) -> pow(price - mean, 2))).sum();
 
-        for(double price: values) {
-            numerator = numerator + (pow(price - mean,2));
-        }
         return numerator / (getN() - 1);
     }
 
@@ -41,12 +42,12 @@ public class CustomStatistics implements StatisticalSummary {
 
     @Override
     public double getMax() {
-        return 0;
+        return Arrays.stream(values).max().getAsDouble();
     }
 
     @Override
     public double getMin() {
-        return 0;
+        return Arrays.stream(values).min().getAsDouble();
     }
 
     @Override
@@ -56,11 +57,6 @@ public class CustomStatistics implements StatisticalSummary {
 
     @Override
     public double getSum() {
-        double sum = 0;
-        for(double price: values) {
-
-            sum = sum + price;
-        }
-        return sum;
+        return Arrays.stream(values).sum();
     }
 }
