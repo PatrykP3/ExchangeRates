@@ -1,12 +1,13 @@
 package org.gorzela.exchange.nbpapi.entity;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -15,32 +16,19 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NbpResponse {
 
-      private ArrayList<Rate> rates;
+    private ArrayList<Rate> rates;
 
-      public double[] extractBids() {
+    public double[] extractBids() {
 
-            double[] bids = new double[daysNumberCount()];
-            int i = 0;
-            for(Rate rate: rates) {
-                  bids[i] = rate.getBid();
-                  i ++;
-            }
-            return bids;
+        double[] bids = rates.stream().mapToDouble((rate) -> rate.getBid()).toArray();
+
+        return bids;
       }
 
-      public double[] extractAsks() {
+    public double[] extractAsks() {
 
-          double[] asks = new double[daysNumberCount()];
-          int i = 0;
-          for(Rate rate: rates) {
-              asks[i] = rate.getAsk();
-              i++;
-          }
-          return asks;
-      }
+        double[] asks = rates.stream().mapToDouble((rate) -> rate.getAsk()).toArray();
 
-      public int daysNumberCount() {
-
-            return rates.size();
-      }
+        return asks;
+    }
 }

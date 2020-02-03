@@ -1,9 +1,14 @@
 package org.gorzela.exchange.test;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.gorzela.exchange.nbpapi.entity.NbpResponse;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
 import org.gorzela.exchange.nbpapi.NbpApiReader;
+import org.gorzela.exchange.nbpapi.entity.NbpResponse;
 import org.gorzela.exchange.nbpapi.entity.Rate;
 import org.gorzela.exchange.statistics.CustomStatistics;
 import org.junit.Before;
@@ -16,12 +21,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @RestClientTest(NbpApiReader.class)

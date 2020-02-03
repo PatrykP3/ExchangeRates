@@ -1,9 +1,10 @@
 package org.gorzela.exchange.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.gorzela.exchange.statistics.CustomStatistics;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
 public class CustomStatisticsTest {
 

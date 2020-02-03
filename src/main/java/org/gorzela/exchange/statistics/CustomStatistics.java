@@ -1,14 +1,13 @@
 package org.gorzela.exchange.statistics;
 
-import lombok.AllArgsConstructor;
-import org.apache.commons.math3.stat.descriptive.StatisticalSummary;
-
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 import java.util.Arrays;
 
-import com.sun.istack.internal.NotNull;
+import org.apache.commons.math3.stat.descriptive.StatisticalSummary;
+
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class CustomStatistics implements StatisticalSummary {
