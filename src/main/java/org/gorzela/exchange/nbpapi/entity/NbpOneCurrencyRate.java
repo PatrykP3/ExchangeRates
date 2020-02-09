@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Rate {
+public class NbpOneCurrencyRate {
 
    private double bid;
    private double ask;

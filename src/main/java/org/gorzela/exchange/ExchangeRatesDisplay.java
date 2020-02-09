@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.gorzela.exchange.calculator.AlgorithmVersion;
 import org.gorzela.exchange.calculator.StatisticalCalculator;
 import org.gorzela.exchange.nbpapi.NbpApiReader;
-import org.gorzela.exchange.nbpapi.entity.NbpResponse;
+import org.gorzela.exchange.nbpapi.entity.NbpOneCurrencyRatesResponse;
 import org.gorzela.exchange.parameters.NbpCliParameters;
 import org.gorzela.exchange.parameters.NbpCliParametersProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class ExchangeRatesDisplay implements CommandLineRunner {
 
         NbpCliParameters params = nbpCliParametersProvider.getOptionalNbpCliParameters().get();
 
-        Optional<NbpResponse> chargeData = nbpApiReader.getData(params.getCurrencyCode(), params.getDateFrom(), params.getDateTo());
+        Optional<NbpOneCurrencyRatesResponse> chargeData = nbpApiReader.getData(params.getCurrencyCode(), params.getDateFrom(), params.getDateTo());
 
         chargeData.ifPresent(cd -> showResult(params.getAlghoritmVersion(), calculate(params.getAlghoritmVersion(), cd.extractAsks(), cd.extractBids())));
     }

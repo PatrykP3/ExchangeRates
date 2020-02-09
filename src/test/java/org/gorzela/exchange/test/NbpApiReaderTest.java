@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.gorzela.exchange.nbpapi.NbpApiReader;
-import org.gorzela.exchange.nbpapi.entity.NbpResponse;
-import org.gorzela.exchange.nbpapi.entity.Rate;
+import org.gorzela.exchange.nbpapi.entity.NbpOneCurrencyRatesResponse;
+import org.gorzela.exchange.nbpapi.entity.NbpOneCurrencyRate;
 import org.gorzela.exchange.statistics.CustomStatistics;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,21 +41,21 @@ public class NbpApiReaderTest {
     @Before
     public void setUp() throws JsonProcessingException {
 
-        ArrayList<Rate> rates = new ArrayList<Rate>();
-        rates.add(new Rate(0,0));
-        rates.add(new Rate(1,1));
+        ArrayList<NbpOneCurrencyRate> rates = new ArrayList<>();
+        rates.add(new NbpOneCurrencyRate(0,0));
+        rates.add(new NbpOneCurrencyRate(1,1));
 
-        NbpResponse response = new NbpResponse(rates);
+        NbpOneCurrencyRatesResponse response = new NbpOneCurrencyRatesResponse(rates);
 
         String responseString = objectMapper.writeValueAsString(response);
 
-        this.server.expect(requestTo("http://api.nbp.pl/api/exchangerates/rates/c/2018-10-10/2018-10-10/USD")).andRespond(withSuccess(responseString, MediaType.APPLICATION_JSON));
+        this.server.expect(requestTo("http://api.nbp.pl/api/exchangerates/rates/c/USD/2018-10-10/2018-10-10")).andRespond(withSuccess(responseString, MediaType.APPLICATION_JSON));
     }
 
     @Test
-    public void correctResponseTest() throws JsonProcessingException {
+    public void correctResponseTest() {
 
-        Optional<NbpResponse> response = this.nbpClient.getData("2018-10-10",  "2018-10-10", "USD");
+        Optional<NbpOneCurrencyRatesResponse> response = this.nbpClient.getData("USD", "2018-10-10",  "2018-10-10");
         assertThat(response.get().extractAsks().length == 2);
 
         CustomStatistics s = new CustomStatistics(response.get().extractAsks());

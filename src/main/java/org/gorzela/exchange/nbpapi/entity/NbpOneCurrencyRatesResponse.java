@@ -14,20 +14,20 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NbpResponse {
+public class NbpOneCurrencyRatesResponse {
 
-    private ArrayList<Rate> rates;
+    private ArrayList<NbpOneCurrencyRate> rates;
 
     public double[] extractBids() {
 
-        double[] bids = rates.stream().mapToDouble((rate) -> rate.getBid()).toArray();
+        double[] bids = rates.stream().mapToDouble(NbpOneCurrencyRate::getBid).toArray();
 
         return bids;
       }
 
     public double[] extractAsks() {
 
-        double[] asks = rates.stream().mapToDouble((rate) -> rate.getAsk()).toArray();
+        double[] asks = rates.stream().mapToDouble(NbpOneCurrencyRate::getAsk).toArray();
 
         return asks;
     }

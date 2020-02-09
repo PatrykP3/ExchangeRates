@@ -1,12 +1,11 @@
 package org.gorzela.exchange.nbpapi;
 
-import org.gorzela.exchange.nbpapi.entity.NbpResponse;
+import org.gorzela.exchange.nbpapi.entity.NbpOneCurrencyRatesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.ResponseErrorHandler;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,13 +28,13 @@ public class NbpApiReader {
     }
 
 
-    public Optional<NbpResponse> getData(String pathPart1, String pathPart2, String pathPart3) {
+    public Optional<NbpOneCurrencyRatesResponse> getData(String pathPart1, String pathPart2, String pathPart3) {
 
         URI uri = nbpApiUriFactory.getUri(pathPart1, pathPart2, pathPart3);
-        ResponseEntity<NbpResponse> entity;
+        ResponseEntity<NbpOneCurrencyRatesResponse> entity;
 
         try {
-            entity = restTemplate.getForEntity(uri, NbpResponse.class);
+            entity = restTemplate.getForEntity(uri, NbpOneCurrencyRatesResponse.class);
 
         } catch (RestClientException ex) {
 
