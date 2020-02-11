@@ -1,3 +1,7 @@
+This is an experiment on limits of refactoring based on https://github.com/izabelagorzela/ExchangeRates.
+
+Original description:
+
 The application is dedicated for exchange rate downloading from Api NBP (http://api.nbp.pl/) and performing statistical operations on them. The application demands three parameters: currency code (for example USD), date from and date to in format RRRR-MM-DD (standard ISO 8601).
 
 The application uses the lombok library. IDE then requires lombok plugin. 
