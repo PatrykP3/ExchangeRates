@@ -14,14 +14,14 @@ public class NbpApiUriFactory {
     @Autowired
     private NbpApiConfiguration nbpApiConfiguration;
 
-    public URI getUri(String pathPart1, String pathPart2, String pathPart3) {
+    public URI getUri(String... pathParts) {
 
         UriComponents uc = UriComponentsBuilder.newInstance()
                 .scheme(nbpApiConfiguration.getProtocol())
                 .host(nbpApiConfiguration.getHost())
                 .path(nbpApiConfiguration.getPath())
                 .build()
-                .expand(pathPart1, pathPart2, pathPart3)
+                .expand(pathParts)
                 .encode();
         return uc.toUri();
     }

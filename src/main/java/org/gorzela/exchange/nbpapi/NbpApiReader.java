@@ -28,9 +28,9 @@ public class NbpApiReader {
     }
 
 
-    public Optional<NbpOneCurrencyRatesResponse> getData(String pathPart1, String pathPart2, String pathPart3) {
+    public Optional<NbpOneCurrencyRatesResponse> getData(String code, String dateFrom, String dateTo) {
 
-        URI uri = nbpApiUriFactory.getUri(pathPart1, pathPart2, pathPart3);
+        URI uri = nbpApiUriFactory.getUri(code, dateFrom, dateTo);
         ResponseEntity<NbpOneCurrencyRatesResponse> entity;
 
         try {
