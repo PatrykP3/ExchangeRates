@@ -19,9 +19,13 @@ public class NbpCliParametersProvider {
         NbpCliParameters ncp = new NbpCliParameters();
         try {
             CommandLine.populateCommand(ncp, applicationArguments.getSourceArgs());
+            if (ncp.isHelpRequested()) {
+                new CommandLine(ncp).usage(System.out);
+                ncp = null;
+            }
         }
         catch (CommandLine.MissingParameterException ex) {
-            System.out.println("Not enough arguments.");
+            System.out.println("Not enough arguments. " + ex.getMessage());
             CommandLine.usage(ncp, System.out);
             ncp = null;
         }

@@ -31,12 +31,7 @@ public class CustomStatistics implements StatisticalSummary {
     @Override
     public double getStandardDeviation() {
 
-       if (getN() == 1) {
-           return 0;
-       }
-       else {
-           return sqrt(getVariance());
-       }
+        return getN() == 1 ? 0 : sqrt(getVariance());
     }
 
     @Override

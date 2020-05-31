@@ -7,7 +7,6 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-@Configuration
 @Getter
 @Command(name = "java -jar exchangerates", footer = "Copyright (c) 2018 by Izabela Gorzela", description = "Displays currency statistics. Data is read from NBP public API.")
 public class NbpCliParameters {
