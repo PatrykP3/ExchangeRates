@@ -1,13 +1,11 @@
 package org.gorzela.exchange.statistics;
 
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
-
 import java.util.Arrays;
-
-import lombok.AllArgsConstructor;
 import org.gorzela.exchange.calculator.AlgorithmVersion;
 import org.springframework.stereotype.Component;
+
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 @Component
 public class CustomStatistics implements StatisticAlgorithmSupport {

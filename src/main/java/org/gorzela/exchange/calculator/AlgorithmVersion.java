@@ -1,7 +1,6 @@
 package org.gorzela.exchange.calculator;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import static org.gorzela.exchange.common.Constants.APACHE_ALGORITHM_PARAMETERS;

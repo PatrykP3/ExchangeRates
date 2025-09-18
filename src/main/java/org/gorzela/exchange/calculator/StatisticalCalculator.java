@@ -1,6 +1,5 @@
 package org.gorzela.exchange.calculator;
 
-import org.apache.commons.math3.stat.descriptive.StatisticalSummary;
 import org.gorzela.exchange.statistics.StatisticAlgorithmSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

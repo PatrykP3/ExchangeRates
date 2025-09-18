@@ -1,8 +1,6 @@
 package org.gorzela.exchange.parameters;
 
-import java.util.Arrays;
 import lombok.Getter;
-import org.gorzela.exchange.calculator.AlgorithmVersion;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
