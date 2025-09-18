@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
+import static org.gorzela.exchange.calculator.AlgorithmVersion.MY_ALGORITHM;
 
 @Component
 public class CustomStatistics implements StatisticAlgorithmSupport {
@@ -14,7 +15,7 @@ public class CustomStatistics implements StatisticAlgorithmSupport {
 
     @Override
     public boolean supports(AlgorithmVersion algorithmVersion) {
-        return false;
+        return algorithmVersion.equals(MY_ALGORITHM);
     }
 
     @Override
