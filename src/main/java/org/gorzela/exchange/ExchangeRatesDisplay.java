@@ -60,7 +60,7 @@ public class ExchangeRatesDisplay implements CommandLineRunner {
 
     private void showResult(AlgorithmVersion algorithmVersion, CalculationResult result) {
 
-        System.out.format("Calculation performed with %s.%n", algorithmVersion.getAlgorithmNames());
+        System.out.format("Calculation performed with %s.%n", algorithmVersion.getLongName());
         System.out.format("Purchase average: %.4f%n", result.getMean());
         System.out.format("Standard deviation %.4f%n", result.getDeviation());
     }
