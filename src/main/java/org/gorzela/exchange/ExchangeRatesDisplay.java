@@ -2,6 +2,7 @@ package org.gorzela.exchange;
 
 import lombok.extern.slf4j.Slf4j;
 import org.gorzela.exchange.calculator.AlgorithmVersion;
+import org.gorzela.exchange.calculator.AlgorithmVersionProvider;
 import org.gorzela.exchange.calculator.StatisticalCalculator;
 import org.gorzela.exchange.nbpapi.NbpApiReader;
 import org.gorzela.exchange.nbpapi.entity.NbpOneCurrencyRatesResponse;
@@ -24,6 +25,9 @@ public class ExchangeRatesDisplay implements CommandLineRunner {
     private NbpApiReader nbpApiReader;
 
     @Autowired
+    private AlgorithmVersionProvider algorithmVersionProvider;
+
+    @Autowired
     private StatisticalCalculator calculator;
 
     @Override
@@ -39,7 +43,11 @@ public class ExchangeRatesDisplay implements CommandLineRunner {
 
         Optional<NbpOneCurrencyRatesResponse> chargeData = nbpApiReader.getData(params.getCurrencyCode(), params.getDateFrom(), params.getDateTo());
 
-        chargeData.ifPresent(cd -> showResult(params.getAlghoritmVersion(), calculate(params.getAlghoritmVersion(), cd.extractAsks(), cd.extractBids())));
+        chargeData.ifPresent(cd ->
+                showResult(algorithmVersionProvider.getAlgorithmVersion(params.getAlgorithmVersionParameter()),
+                calculate(algorithmVersionProvider.getAlgorithmVersion(params.getAlgorithmVersionParameter()),
+                        cd.extractAsks(),
+                        cd.extractBids())));
     }
 
     private CalculationResult calculate(AlgorithmVersion algorithmVersion, double[] bids, double[] asks) {
@@ -52,7 +60,7 @@ public class ExchangeRatesDisplay implements CommandLineRunner {
 
     private void showResult(AlgorithmVersion algorithmVersion, CalculationResult result) {
 
-        System.out.format("Calculation performed with %s.%n",algorithmVersion.getAlghorithmName());
+        System.out.format("Calculation performed with %s.%n", algorithmVersion.getAlgorithmNames());
         System.out.format("Purchase average: %.4f%n", result.getMean());
         System.out.format("Standard deviation %.4f%n", result.getDeviation());
     }

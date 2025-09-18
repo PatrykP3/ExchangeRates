@@ -5,14 +5,24 @@ import static java.lang.Math.sqrt;
 
 import java.util.Arrays;
 
-import org.apache.commons.math3.stat.descriptive.StatisticalSummary;
-
 import lombok.AllArgsConstructor;
+import org.gorzela.exchange.calculator.AlgorithmVersion;
+import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
-public class CustomStatistics implements StatisticalSummary {
+@Component
+public class CustomStatistics implements StatisticAlgorithmSupport {
 
     private double[] values;
+
+    @Override
+    public boolean supports(AlgorithmVersion algorithmVersion) {
+        return false;
+    }
+
+    @Override
+    public void setValues(double[] values) {
+        this.values = values;
+    }
 
     @Override
     public double getMean() {

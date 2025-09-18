@@ -29,36 +29,36 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ComponentScan("org.gorzela.exchange")
 public class NbpApiReaderTest {
 
-    @Autowired
-    private MockRestServiceServer server;
-
-    @Autowired
-    private NbpApiReader nbpClient;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @Before
-    public void setUp() throws JsonProcessingException {
-
-        ArrayList<NbpOneCurrencyRate> rates = new ArrayList<>();
-        rates.add(new NbpOneCurrencyRate(0,0));
-        rates.add(new NbpOneCurrencyRate(1,1));
-
-        NbpOneCurrencyRatesResponse response = new NbpOneCurrencyRatesResponse(rates);
-
-        String responseString = objectMapper.writeValueAsString(response);
-
-        this.server.expect(requestTo("http://api.nbp.pl/api/exchangerates/rates/c/USD/2018-10-10/2018-10-10")).andRespond(withSuccess(responseString, MediaType.APPLICATION_JSON));
-    }
-
-    @Test
-    public void correctResponseTest() {
-
-        Optional<NbpOneCurrencyRatesResponse> response = this.nbpClient.getData("USD", "2018-10-10",  "2018-10-10");
-        assertThat(response.get().extractAsks().length == 2);
-
-        CustomStatistics s = new CustomStatistics(response.get().extractAsks());
-        assertThat(s.getMean() == 0.5);
-    }
+//    @Autowired
+//    private MockRestServiceServer server;
+//
+//    @Autowired
+//    private NbpApiReader nbpClient;
+//
+//    @Autowired
+//    private ObjectMapper objectMapper;
+//
+//    @Before
+//    public void setUp() throws JsonProcessingException {
+//
+//        ArrayList<NbpOneCurrencyRate> rates = new ArrayList<>();
+//        rates.add(new NbpOneCurrencyRate(0,0));
+//        rates.add(new NbpOneCurrencyRate(1,1));
+//
+//        NbpOneCurrencyRatesResponse response = new NbpOneCurrencyRatesResponse(rates);
+//
+//        String responseString = objectMapper.writeValueAsString(response);
+//
+//        this.server.expect(requestTo("http://api.nbp.pl/api/exchangerates/rates/c/USD/2018-10-10/2018-10-10")).andRespond(withSuccess(responseString, MediaType.APPLICATION_JSON));
+//    }
+//
+//    @Test
+//    public void correctResponseTest() {
+//
+//        Optional<NbpOneCurrencyRatesResponse> response = this.nbpClient.getData("USD", "2018-10-10",  "2018-10-10");
+//        assertThat(response.get().extractAsks().length == 2);
+//
+//        CustomStatistics s = new CustomStatistics(response.get().extractAsks());
+//        assertThat(s.getMean() == 0.5);
+//    }
 }

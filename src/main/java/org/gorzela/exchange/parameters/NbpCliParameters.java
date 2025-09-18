@@ -1,8 +1,8 @@
 package org.gorzela.exchange.parameters;
 
+import java.util.Arrays;
 import lombok.Getter;
 import org.gorzela.exchange.calculator.AlgorithmVersion;
-import org.springframework.context.annotation.Configuration;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -23,13 +23,6 @@ public class NbpCliParameters {
     @Parameters(index = "2", arity = "1", description = "end date of currency data", paramLabel = "DATE_TO")
     private String dateTo;
 
-    @Option(names = {"-m", "-my", "-myalghoritm"}, arity = "0", description = "to use my statistics implementation, must be at the end")
-    private String alghoritmVersion;
-
-    public AlgorithmVersion getAlghoritmVersion() {
-        if(alghoritmVersion != null) {
-            return AlgorithmVersion.MY_ALGORITHM;
-        }
-        return AlgorithmVersion.APACHE_ALGORITHM;
-    }
+    @Option(names = {"-c", "-custom", "-s", "-standard"}, arity = "1", description = "to use my statistics implementation, must be at the end")
+    private String algorithmVersionParameter;
 }
